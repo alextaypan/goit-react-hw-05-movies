@@ -22,7 +22,7 @@ export const HomeView = () => {
         {movies &&
           movies.map((movie) => (
             <li key={movie.id}>
-              <Link to={`${url}/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/movies${url}${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
       </ul>

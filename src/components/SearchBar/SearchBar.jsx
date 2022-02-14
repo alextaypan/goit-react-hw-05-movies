@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 import { useState } from "react";
-// import { FcSearch } from "react-icons/fc";
 import s from "./Searchbar.module.css";
 import PropTypes from "prop-types";
 
@@ -28,7 +27,7 @@ export const Searchbar = ({ changeSearch }) => {
       {/* <header className={s.searchBar}> */}
       <form className={s.searchForm} onSubmit={handleSubmit}>
         <button type="submit" className={s.searchFormBtn}>
-          {/* <FcSearch className={s.reactIcon} /> */}
+          Search
         </button>
 
         <input
@@ -38,7 +37,7 @@ export const Searchbar = ({ changeSearch }) => {
           onChange={handleChange}
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search movies"
         />
       </form>
       {/* </header> */}
