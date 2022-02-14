@@ -5,14 +5,11 @@ import { Link, useRouteMatch } from "react-router-dom";
 export const HomeView = () => {
   const { url } = useRouteMatch();
   const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchTrendingMovies()
-      .then(({ results }) => {
-        setMovies(results);
-      })
-      .catch((error) => setError(error.message));
+    fetchTrendingMovies().then(({ results }) => {
+      setMovies(results);
+    });
   }, []);
 
   return (

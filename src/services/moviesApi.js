@@ -26,7 +26,7 @@ export const fetchMovies = (query, page) => {
 export const fetchMovieById = (movie_id) => {
   return axios
     .get(`movie/${movie_id}?api_key=${KEY}&language=en-US`)
-    .then((response) => response.data)
+    .then((response) => console.log(response.data))
     .catch((error) => {
       throw error;
     });
