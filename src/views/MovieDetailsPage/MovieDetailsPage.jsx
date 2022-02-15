@@ -3,6 +3,8 @@ import {
   useParams,
   NavLink,
   useRouteMatch,
+  useHistory,
+  useLocation,
   Route,
   Switch,
 } from "react-router-dom";
@@ -28,6 +30,8 @@ const Status = {
 };
 
 export default function MovieDetailsPage() {
+  const history = useHistory();
+  const location = useLocation();
   const { movieId } = useParams();
   const { url, path } = useRouteMatch();
   const [movie, setMovie] = useState(null);
@@ -57,12 +61,20 @@ export default function MovieDetailsPage() {
       });
   }, [movieId]);
 
+  const onGoBack = () => {
+    // history.push(location?.state?.from ?? "/");
+    history.goBack();
+  };
+
   return (
     <>
       {status === Status.PENDING && <Loader />}
       {status === Status.REJECTED && <NoFoundView message={error} />}
       {status === Status.RESOLVED && (
         <>
+          <button type="button" className={s.button} onClick={onGoBack}>
+            Go back
+          </button>
           <div className={s.wrapper}>
             <img className={s.poster} src={movie.src} alt={movie.title} />
             <div className={s.description}>

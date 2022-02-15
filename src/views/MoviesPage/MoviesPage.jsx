@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch, useLocation, useHistory } from "react-router-dom";
 import s from "../HomePage/HomePage.module.css";
 import Searchbar from "../../components/SearchBar/SearchBar";
 import * as apiService from "../../services/moviesApi";
@@ -15,11 +15,14 @@ const Status = {
 };
 
 export default function MoviesPage() {
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
 
+  const history = useHistory();
+  const location = useLocation();
+  const { search } = location;
   const { url } = useRouteMatch();
 
   useEffect(() => {
@@ -44,13 +47,19 @@ export default function MoviesPage() {
       });
   }, [searchQuery]);
 
-  const onChangeQuery = (newQuery) => {
-    if (searchQuery === newQuery) {
-      return;
-    }
-    setSearchQuery(newQuery);
+  const onChangeQuery = (query) => {
+    // if (searchQuery === newQuery) {
+    //   return;
+    // }
+    setMovies([]);
+    setSearchQuery(query);
     setError(null);
     setStatus(Status.IDLE);
+
+    history.push({
+      ...location,
+      search: `query=${query}`,
+    });
   };
 
   return (
@@ -62,7 +71,12 @@ export default function MoviesPage() {
         <ul className={s.movieGallery}>
           {movies.map((movie) => (
             <li key={movie.id} className={s.movieGalleryItem}>
-              <Link to={`${url}/${movie.id}`}>
+              <Link
+                to={{
+                  pathname: `${url}/${movie.id}`,
+                  state: { from: location },
+                }}
+              >
                 <img
                   className={s.movieGalleryItemImage}
                   src={
