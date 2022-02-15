@@ -17,9 +17,7 @@ function App() {
         <Route path="/movies/:movieId">
           <MovieDetailsPage />
         </Route>
-        {/* <Route path="/movies" />
-        <Route path="/:movieId/cast" />
-        <Route path="/:movieId/reviews" /> */}
+        <Route path="/movies" />
       </Switch>
     </div>
   );

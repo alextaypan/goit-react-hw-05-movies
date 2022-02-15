@@ -1,8 +1,16 @@
-import { useParams, Link } from "react-router-dom";
+import {
+  useParams,
+  NavLink,
+  useRouteMatch,
+  Route,
+  Switch,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchMovieById } from "../../services/moviesApi";
+import Cast from "../../views/Cast";
 
 export const MovieDetailsView = () => {
+  const { url } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
 
@@ -24,8 +32,14 @@ export const MovieDetailsView = () => {
       <p>{movie.overview}</p>
       <p>Genres</p>
       <p>Additional ifrormation</p>
-      <Link to="">Cast</Link>
-      <Link to="">Reviews</Link>
+      <NavLink to={`${url}/cast`}>Cast</NavLink>
+      <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+      <Switch>
+        <Route path="/:movieId/cast">
+          <Cast />
+        </Route>
+        <Route path="/:movieId/reviews" />
+      </Switch>
     </>
   );
 };
