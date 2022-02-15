@@ -81,7 +81,7 @@ export default function MoviesPage() {
                   className={s.movieGalleryItemImage}
                   src={
                     movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                      ? `https://image.tmdb.org/t/p/w400/${movie.poster_path}`
                       : notFoundImg
                   }
                   alt={movie.title}
