@@ -14,7 +14,7 @@ export function fetchTrendingMovies() {
 
 export function fetchMoviesByQuery(query) {
   return ApiService(
-    `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`
+    `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`
   );
 }
 
