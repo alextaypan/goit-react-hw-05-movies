@@ -48,7 +48,7 @@ export default function Cast() {
       <ul className={s.cast}>
         {status === Status.RESOLVED &&
           cast.map((cast) => (
-            <li key={cast.id} className={s.item}>
+            <li key={cast.cast_id} className={s.item}>
               <img
                 className={s.photo}
                 src={
