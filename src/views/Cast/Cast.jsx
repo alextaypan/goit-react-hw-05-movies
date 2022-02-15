@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import ErrorView from "../../Components/ErrorView/ErrorView";
-import Loader from "../../components/Loader/Loader";
+import { Loader } from "../../components/Loader/Loader";
 import s from "./Cast.module.css";
 import { toast } from "react-toastify";
 
-import * as apiService from "../../services/films-api";
+import * as apiService from "../../services/moviesApi";
 import NotFoundPage from "../NotFoundPage";
 
 const Status = {
@@ -42,7 +42,7 @@ export default function Cast() {
 
   return (
     <>
-      {Status.Pending && <Loader />}
+      {Status.PENDING && <Loader />}
       {/* {status === Status.REJECTED && <ErrorView message={error} />} */}
 
       <ul className={s.cast}>

@@ -1,33 +1,51 @@
-import { Route, Switch } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Loader } from "./components/Loader/Loader";
+import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "./App.css";
 import { AppBar } from "./components/AppBar/AppBar";
-import HomePage from "./views/HomePage";
-import MovieDetailsPage from "./views/MovieDetailsPage";
-import MoviesPage from "module";
-import NotFoundPage from "module";
 
-function App() {
+const HomePage = lazy(() =>
+  import("./views/HomePage/HomePage" /* webpackChunkName: "home-page" */)
+);
+
+const MoviesPage = lazy(() =>
+  import("./views/MoviesPage/MoviesPage" /* webpackChunkName: "movies-page" */)
+);
+
+const NotFoundPage = lazy(() =>
+  import("./views/NotFoundPage" /* webpackChunkName: "not-found-view" */)
+);
+
+const MovieDetailsPage = lazy(() =>
+  import(
+    "./views/MovieDetailsPage/MovieDetailsPage" /* webpackChunkName: "movie-details-page" */
+  )
+);
+
+export default function App() {
   return (
     <div>
-      <ToastContainer theme="colored" autoClose={2000} />
+      <ToastContainer autoClose={2000} theme="colored" />
       <AppBar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/movies">
-          <MoviesPage />
-        </Route>
-        <Route path="/movies/:movieId">
-          <MovieDetailsPage />
-        </Route>
-        <Route>
-          <NotFoundPage />
-        </Route>
-      </Switch>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+
+          <Route path="/movies" exact>
+            <MoviesPage />
+          </Route>
+
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
+          </Route>
+
+          <Route>
+            <NotFoundPage />
+          </Route>
+        </Switch>
+      </Suspense>
     </div>
   );
 }
-
-export default App;
