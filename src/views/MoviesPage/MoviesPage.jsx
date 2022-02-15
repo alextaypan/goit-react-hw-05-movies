@@ -3,9 +3,9 @@ import { Link, useRouteMatch } from "react-router-dom";
 import s from "../HomePage/HomePage.module.css";
 import Searchbar from "../../components/SearchBar/SearchBar";
 import * as apiService from "../../services/moviesApi";
-import NotFoundPage from "../NotFoundPage";
+import notFoundImg from "../../images/notFound.png";
 import { Loader } from "../../components/Loader/Loader";
-// import ErrorView from "../../Components/ErrorView/ErrorView";
+import NoFoundView from "../../components/NoFoundView/NoFoundView";
 
 const Status = {
   IDLE: "idle",
@@ -57,7 +57,7 @@ export default function MoviesPage() {
     <>
       <Searchbar onSubmit={onChangeQuery} />
       {status === Status.PENDING && <Loader />}
-      {/* {status === Status.REJECTED && <ErrorView message={error} />} */}
+      {status === Status.REJECTED && <NoFoundView message={error} />}
       {status === Status.RESOLVED && (
         <ul className={s.movieGallery}>
           {movies.map((movie) => (
@@ -68,7 +68,7 @@ export default function MoviesPage() {
                   src={
                     movie.poster_path
                       ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                      : NotFoundPage
+                      : notFoundImg
                   }
                   alt={movie.title}
                 />

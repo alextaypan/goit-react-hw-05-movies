@@ -3,7 +3,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import * as apiService from "../../services/moviesApi";
 import s from "./HomePage.module.css";
 import { Loader } from "../../components/Loader/Loader";
-// import ErrorView from "../../Components/ErrorView/ErrorView";
+import NoFoundView from "../../components/NoFoundView/NoFoundView";
 import NotFoundPage from "../NotFoundPage";
 
 const Status = {
@@ -38,7 +38,7 @@ export default function HomePage() {
       <h2 className={s.title}>Trending today</h2>
       {status === Status.PENDING && <Loader />}
 
-      {/* {status === Status.REJECTED && <ErrorView message={error.message} />} */}
+      {status === Status.REJECTED && <NoFoundView message={error.message} />}
 
       {status === Status.RESOLVED && (
         <ul className={s.movieGallery}>

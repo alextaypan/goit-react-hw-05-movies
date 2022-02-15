@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import ErrorView from "../../Components/ErrorView/ErrorView";
+import NoFoundView from "../../components/NoFoundView/NoFoundView";
 import { Loader } from "../../components/Loader/Loader";
 import s from "./Cast.module.css";
 import { toast } from "react-toastify";
@@ -43,7 +43,7 @@ export default function Cast() {
   return (
     <>
       {Status.Pending && <Loader />}
-      {/* {status === Status.REJECTED && <ErrorView message={error} />} */}
+      {status === Status.REJECTED && <NoFoundView message={error} />}
 
       <ul className={s.cast}>
         {status === Status.RESOLVED &&

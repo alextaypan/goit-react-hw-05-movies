@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import s from "./Reviews.module.css";
 import { Loader } from "../../components/Loader/Loader";
 import * as apiService from "../../services/moviesApi";
-// import ErrorView from "../../Components/ErrorView/ErrorView";
+import NoFoundView from "../../components/NoFoundView/NoFoundView";
 
 const Status = {
   IDLE: "idle",
@@ -41,7 +41,7 @@ export default function Reviews() {
   return (
     <>
       {status === Status.PENDING && <Loader />}
-      {/* {status === Status.REJECTED && <ErrorView message={error} />} */}
+      {status === Status.REJECTED && <NoFoundView message={error} />}
       {status === Status.RESOLVED && (
         <ul>
           {reviews.map((review) => (

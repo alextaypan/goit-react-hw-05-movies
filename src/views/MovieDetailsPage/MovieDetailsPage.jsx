@@ -6,11 +6,11 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import NotFoundPage from "../NotFoundPage";
+import notFoundImg from "../../images/notFound.png";
 import * as apiService from "../../services/moviesApi";
 import s from "./MovieDetailsPage.module.css";
 
-// import ErrorView from "../../Components/ErrorView/ErrorView";
+import NoFoundView from "../../components/NoFoundView/NoFoundView";
 import { Loader } from "../../components/Loader/Loader";
 
 const Cast = lazy(() =>
@@ -43,7 +43,7 @@ export default function MovieDetailsPage() {
         setMovie({
           src: poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-            : NotFoundPage,
+            : notFoundImg,
           title: original_title,
           score: popularity.toFixed(1),
           overview,
@@ -60,7 +60,7 @@ export default function MovieDetailsPage() {
   return (
     <>
       {status === Status.PENDING && <Loader />}
-      {/* {status === Status.REJECTED && <ErrorView message={error} />} */}
+      {status === Status.REJECTED && <NoFoundView message={error} />}
       {status === Status.RESOLVED && (
         <>
           <div className={s.wrapper}>
