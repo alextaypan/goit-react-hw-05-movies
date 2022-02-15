@@ -1,50 +1,50 @@
-import { toast } from "react-toastify";
 import { useState } from "react";
-import s from "./Searchbar.module.css";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
-export const Searchbar = ({ changeSearch }) => {
+import "react-toastify/dist/ReactToastify.css";
+import s from "./Searchbar.module.css";
+
+export default function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState("");
 
-  const handleChange = (event) => {
-    setQuery(event.target.value.toLowerCase());
+  const handleNameChange = (e) => {
+    setQuery(e.target.value.toLowerCase());
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (query.trim() === "") {
-      toast.warn(
+      return toast.error(
         "The search string cannot be empty. Please specify your search query!"
       );
-      return;
     }
-    changeSearch(query);
+
+    onSubmit(query);
+
     setQuery("");
   };
 
   return (
-    <>
-      {/* <header className={s.searchBar}> */}
-      <form className={s.searchForm} onSubmit={handleSubmit}>
-        <button type="submit" className={s.searchFormBtn}>
-          Search
-        </button>
+    <form className={s.searchForm} onSubmit={handleSubmit}>
+      <button type="submit" className={s.searchFormButton}>
+        <span className={s.searchFormButtonLabel}>Search</span>
+      </button>
 
-        <input
-          className={s.searchFormInput}
-          type="text"
-          value={query}
-          onChange={handleChange}
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movies"
-        />
-      </form>
-      {/* </header> */}
-    </>
+      <input
+        className={s.searchFormInput}
+        type="text"
+        autoComplete="off"
+        autoFocus
+        placeholder="Search movies"
+        value={query}
+        onChange={handleNameChange}
+      />
+    </form>
   );
-};
+}
 
 Searchbar.propTypes = {
-  changeSearch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

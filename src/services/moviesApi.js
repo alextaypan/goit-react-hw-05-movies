@@ -5,7 +5,7 @@ async function ApiService(url) {
   const response = await fetch(url);
   return response.ok
     ? await response.json()
-    : Promise.reject(new Error("Not found"));
+    : Promise.reject(new Error("404 Not found"));
 }
 
 export function fetchTrendingMovies() {
