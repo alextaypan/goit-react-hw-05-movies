@@ -1,12 +1,11 @@
-// import ShowMore from "react-simple-show-more";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import s from "./Reviews.module.css";
 import { Loader } from "../../components/Loader/Loader";
 import * as apiService from "../../services/moviesApi";
 // import ErrorView from "../../Components/ErrorView/ErrorView";
-// import NotFoundPage from "../NotFoundPage";
 
 const Status = {
   IDLE: "idle",
@@ -26,7 +25,7 @@ export default function Reviews() {
       .fetchMovieReviews(movieId)
       .then(({ results }) => {
         if (results.length === 0) {
-          toast.error("There are no reviews for this movie ");
+          toast.info("There are no reviews for this movie ");
           setStatus(Status.IDLE);
           return;
         }
@@ -48,19 +47,7 @@ export default function Reviews() {
           {reviews.map((review) => (
             <li key={review.id} className={s.review}>
               <h2 className={s.reviewAuthor}>Author: {review.author}</h2>
-              <p className={s.reviewContent}>
-                {/* <ShowMore
-                  text={review.content}
-                  length={170}
-                  showMoreLabel="Show more"
-                  showLessLabel="Show less"
-                  style={{
-                    cursor: "pointer",
-                    color: "green",
-                    fontWeight: "bold",
-                  }}
-                /> */}
-              </p>
+              <p className={s.reviewContent}>{review.content}</p>
             </li>
           ))}
         </ul>

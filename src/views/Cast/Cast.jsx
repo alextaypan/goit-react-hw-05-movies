@@ -6,7 +6,7 @@ import s from "./Cast.module.css";
 import { toast } from "react-toastify";
 
 import * as apiService from "../../services/moviesApi";
-import NotFoundPage from "../NotFoundPage";
+import notFoundImg from "../../images/notFound.png";
 
 const Status = {
   IDLE: "idle",
@@ -17,7 +17,7 @@ const Status = {
 
 export default function Cast() {
   const { movieId } = useParams();
-  const [casts, setCast] = useState([]);
+  const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
 
@@ -28,7 +28,7 @@ export default function Cast() {
       .fetchMovieCast(movieId)
       .then(({ cast }) => {
         if (cast.length === 0) {
-          toast.error("There are no cast for this movie ");
+          toast.info("There are no cast for this movie ");
           return;
         }
         setCast(cast);
@@ -42,19 +42,19 @@ export default function Cast() {
 
   return (
     <>
-      {Status.PENDING && <Loader />}
+      {Status.Pending && <Loader />}
       {/* {status === Status.REJECTED && <ErrorView message={error} />} */}
 
       <ul className={s.cast}>
         {status === Status.RESOLVED &&
-          casts.map((cast) => (
+          cast.map((cast) => (
             <li key={cast.id} className={s.item}>
               <img
                 className={s.photo}
                 src={
                   cast.profile_path
-                    ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
-                    : NotFoundPage
+                    ? `https://image.tmdb.org/t/p/w400/${cast.profile_path}`
+                    : notFoundImg
                 }
                 alt={cast.name}
               />

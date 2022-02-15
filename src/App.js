@@ -13,7 +13,7 @@ const MoviesPage = lazy(() =>
 );
 
 const NotFoundPage = lazy(() =>
-  import("./views/NotFoundPage" /* webpackChunkName: "not-found-view" */)
+  import("./views/NotFoundPage" /* webpackChunkName: "not-found-page" */)
 );
 
 const MovieDetailsPage = lazy(() =>
@@ -24,7 +24,7 @@ const MovieDetailsPage = lazy(() =>
 
 export default function App() {
   return (
-    <div>
+    <>
       <ToastContainer autoClose={2000} theme="colored" />
       <AppBar />
       <Suspense fallback={<Loader />}>
@@ -46,6 +46,6 @@ export default function App() {
           </Route>
         </Switch>
       </Suspense>
-    </div>
+    </>
   );
 }

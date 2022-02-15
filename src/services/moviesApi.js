@@ -9,7 +9,7 @@ async function ApiService(url) {
 }
 
 export function fetchTrendingMovies() {
-  return ApiService(`${BASE_URL}trending/all/day?api_key=${API_KEY}`);
+  return ApiService(`${BASE_URL}trending/movie/day?api_key=${API_KEY}`);
 }
 
 export function fetchMoviesByQuery(query) {
