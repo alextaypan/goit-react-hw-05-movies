@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useRouteMatch, useLocation, useHistory } from "react-router-dom";
+import queryString from "query-string";
 import s from "../HomePage/HomePage.module.css";
 import Searchbar from "../../components/SearchBar/SearchBar";
 import * as apiService from "../../services/moviesApi";
@@ -23,6 +24,7 @@ export default function MoviesPage() {
   const history = useHistory();
   const location = useLocation();
   const { search } = location;
+  const { query } = queryString.parse(search);
   const { url } = useRouteMatch();
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function MoviesPage() {
   }, [searchQuery]);
 
   const onChangeQuery = (query) => {
-    // if (searchQuery === newQuery) {
+    // if (searchQuery === query) {
     //   return;
     // }
     setMovies([]);

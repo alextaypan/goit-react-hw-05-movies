@@ -46,7 +46,7 @@ export default function MovieDetailsPage() {
       .then(({ poster_path, original_title, popularity, overview, genres }) => {
         setMovie({
           src: poster_path
-            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+            ? `https://image.tmdb.org/t/p/w400/${poster_path}`
             : notFoundImg,
           title: original_title,
           score: popularity.toFixed(1),
