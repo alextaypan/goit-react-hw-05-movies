@@ -1,52 +1,52 @@
-import { lazy, Suspense } from "react";
-import { Loader } from "./components/Loader/Loader";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import Container from "./components/Container/Container";
 import { ToastContainer } from "react-toastify";
-import { AppBar } from "./components/AppBar/AppBar";
+import AppBar from "./components/AppBar/AppBar";
+import Loader from "./components/Loader/Loader";
 
 const HomePage = lazy(() =>
-  import("./views/HomePage/HomePage" /* webpackChunkName: "home-page" */)
+  import("./pages/HomePage/HomePage" /* webpackChunkName: "home-page" */)
 );
-
 const MoviesPage = lazy(() =>
-  import("./views/MoviesPage/MoviesPage" /* webpackChunkName: "movies-page" */)
+  import("./pages/MoviesPage/MoviesPage" /* webpackChunkName: "movies-page" */)
 );
-
-const NotFoundPage = lazy(() =>
-  import("./views/NotFoundPage" /* webpackChunkName: "not-found-page" */)
-);
-
 const MovieDetailsPage = lazy(() =>
   import(
-    "./views/MovieDetailsPage/MovieDetailsPage" /* webpackChunkName: "movie-details-page" */
+    "./pages/MovieDetailsPage/MovieDetailsPage" /* webpackChunkName: "movie-details-page" */
+  )
+);
+const PageNotFound = lazy(() =>
+  import(
+    "./pages/PageNotFound/PageNotFound" /* webpackChunkName: "page-not-found" */
   )
 );
 
-export default function App() {
-  return (
-    <>
-      <ToastContainer autoClose={2000} theme="colored" />
-      <AppBar />
+const App = () => (
+  <>
+    <ToastContainer autoClose={2000} theme="dark" />
+    <AppBar />
+
+    <Container>
       <Suspense fallback={<Loader />}>
         <Switch>
-          <Route path="/" exact>
+          <Route exact path="/">
             <HomePage />
           </Route>
-
-          <Route path="/movies" exact>
+          <Route exact path="/movies">
             <MoviesPage />
           </Route>
-
           <Route path="/movies/:movieId">
             <MovieDetailsPage />
           </Route>
-
           <Route path="/page-not-found">
-            <NotFoundPage />
+            <PageNotFound />
           </Route>
           <Redirect to="/page-not-found" />
         </Switch>
       </Suspense>
-    </>
-  );
-}
+    </Container>
+  </>
+);
+
+export default App;

@@ -1,10 +1,12 @@
-import { Navigation } from "../Navigation/Navigation";
-import s from "./AppBar.module.css";
+import Navigation from "../Navigation/Navigation";
+import styles from "./AppBar.module.scss";
 
-export const AppBar = () => {
+const AppBar = () => {
   return (
-    <header className={s.header}>
+    <header className={styles.header}>
       <Navigation />
     </header>
   );
 };
+
+export default AppBar;
