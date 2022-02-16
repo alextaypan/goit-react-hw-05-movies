@@ -3,20 +3,19 @@ import PropTypes from "prop-types";
 import MoviePreview from "../MoviePreview/MoviePreview";
 
 import routes from "../../routes";
-import styles from "./MovieList.module.scss";
+import s from "./MovieList.module.scss";
 
-// Комопнент списка фильмов, принимает фильмы и location от withRouter
 const MovieList = ({ movies, location }) => {
   return (
-    <ul className={styles.list}>
+    <ul className={s.list}>
       {movies.map(({ id, title, poster_path, vote_average }) => (
-        <li key={id} className={styles.item}>
+        <li key={id} className={s.item}>
           <Link
             to={{
-              pathname: `${routes.movies}/${id}`, // Заменяем стандартный путь в to
-              state: { from: location }, // Передает данные из текущего маршрута в следующий
+              pathname: `${routes.movies}/${id}`,
+              state: { from: location },
             }}
-            className={styles.link}
+            className={s.link}
           >
             <MoviePreview
               title={title}

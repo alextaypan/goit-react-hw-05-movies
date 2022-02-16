@@ -1,13 +1,9 @@
-import PropTypes from 'prop-types';
-import styles from './Container.module.scss';
+import PropTypes from "prop-types";
+import s from "./Container.module.scss";
 
 const Container = ({ children }) => (
-  <div className={styles.container}>{children}</div>
+  <div className={s.container}>{children}</div>
 );
-
-Container.defaultProps = {
-  children: [],
-};
 
 Container.propTypes = {
   children: PropTypes.node,

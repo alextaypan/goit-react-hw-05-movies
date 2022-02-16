@@ -1,5 +1,4 @@
-// Стили превью фильма в списке фильмов
-@import '../../variables.module.scss';
+@import "../../variables.module.scss";
 
 .card {
   position: relative;
@@ -7,19 +6,7 @@
 }
 
 .thumb {
-  height: 250px;
-
-  @media screen and (min-width: 370px) and (max-width: 767px) {
-    height: 300px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1169px) {
-    height: 350px;
-  }
-
-  @media screen and (min-width: 1170px) {
-    height: 400px;
-  }
+  height: 400px;
 }
 
 .poster {
@@ -37,25 +24,4 @@
   padding: 10px;
 
   font-size: 18px;
-}
-
-.vote {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 5px;
-  border-radius: 5px;
-
-  color: #ffffff;
-  background-color: $secondary-color;
-
-  &--top {
-    @extend .vote;
-    background-color: $base-color;
-  }
-
-  &--low {
-    @extend .vote;
-    background-color: tomato;
-  }
 }

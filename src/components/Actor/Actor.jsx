@@ -22,10 +22,6 @@ const Actor = ({ photo, name, character }) => {
   );
 };
 
-// Actor.dedaultProps = {
-//   photo: placeholder,
-// };
-
 Actor.propTypes = {
   photo: PropTypes.string,
   name: PropTypes.string.isRequired,

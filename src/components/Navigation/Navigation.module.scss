@@ -1,18 +1,8 @@
-// Стили главной навигации
-@import '../../variables.module.scss';
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 0px auto;
-  padding: 0px 15px;
-  max-width: 1170px;
-}
+@import "../../variables.module.scss";
 
 .list {
   display: flex;
+  margin-left: 10px;
 }
 
 .item {
@@ -41,9 +31,4 @@
 
     text-decoration: none;
   }
-}
-
-.title {
-  text-transform: uppercase;
-  cursor: default;
 }

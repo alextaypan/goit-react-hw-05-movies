@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
 import api from "../../services/api";
+import s from "./HomePage.module.scss";
 
 const HomePage = () => {
   const [trends, setTrends] = useState([]);
@@ -28,6 +29,7 @@ const HomePage = () => {
 
   return (
     <>
+      <h1 className={s.title}>Trending today</h1>
       {trends && <MovieList movies={trends} />}
       {isLoading && <Loader />}
     </>

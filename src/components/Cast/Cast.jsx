@@ -4,7 +4,7 @@ import Actor from "../Actor/Actor";
 import Loader from "../Loader/Loader";
 
 import api from "../../services/api";
-import styles from "./Cast.module.scss";
+import s from "./Cast.module.scss";
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
@@ -41,10 +41,10 @@ const Cast = () => {
       {isLoading && <Loader />}
 
       {actors.length > 0 ? (
-        <ul className={styles.list}>
+        <ul className={s.list}>
           {actors.map(({ id, profile_path, name, character }) => {
             return (
-              <li key={id} className={styles.item}>
+              <li key={id} className={s.item}>
                 <Actor photo={profile_path} name={name} character={character} />
               </li>
             );

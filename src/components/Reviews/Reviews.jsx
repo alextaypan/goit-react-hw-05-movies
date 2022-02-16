@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
-import Review from "../Review/Review";
 import Loader from "../Loader/Loader";
 
 import api from "../../services/api";
-import styles from "./Reviews.module.scss";
+import s from "./Reviews.module.scss";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setLoading] = useState(false);
-
   // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState("");
 
@@ -41,11 +39,12 @@ const Reviews = () => {
       {isLoading && <Loader />}
 
       {reviews.length > 0 ? (
-        <ul className={styles.list}>
+        <ul className={s.list}>
           {reviews.map(({ id, author, content }) => {
             return (
-              <li key={id} className={styles.item}>
-                <Review author={author} content={content} />
+              <li key={id} className={s.item}>
+                <b>{author}</b>
+                <p>{content}</p>
               </li>
             );
           })}

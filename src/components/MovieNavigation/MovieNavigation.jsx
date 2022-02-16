@@ -1,6 +1,6 @@
 import { useRouteMatch, useLocation, NavLink } from "react-router-dom";
 import routes from "../../routes";
-import styles from "./MovieNavigation.module.scss";
+import s from "./MovieNavigation.module.scss";
 
 const MovieNavigation = () => {
   const location = useLocation();
@@ -10,15 +10,15 @@ const MovieNavigation = () => {
     <>
       <b>Additional information:</b>
 
-      <ul className={styles.list}>
-        <li className={styles.item}>
+      <ul className={s.list}>
+        <li className={s.item}>
           <NavLink
             to={{
               pathname: `${match.url}${routes.cast}`,
               state: { ...location.state },
             }}
-            className={styles.link}
-            activeClassName={styles["link--active"]}
+            className={s.link}
+            activeClassName={s["link--active"]}
           >
             Cast
           </NavLink>
@@ -29,8 +29,8 @@ const MovieNavigation = () => {
               pathname: `${match.url}${routes.reviews}`,
               state: { ...location.state },
             }}
-            className={styles.link}
-            activeClassName={styles["link--active"]}
+            className={s.link}
+            activeClassName={s["link--active"]}
           >
             Reviews
           </NavLink>

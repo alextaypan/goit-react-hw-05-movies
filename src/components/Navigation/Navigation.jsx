@@ -1,17 +1,17 @@
-import { NavLink } from 'react-router-dom';
-import routes from '../../routes';
+import { NavLink } from "react-router-dom";
+import routes from "../../routes";
 
-import styles from './Navigation.module.scss';
+import s from "./Navigation.module.scss";
 
 const Navigation = () => (
-  <nav className={styles.nav}>
-    <ul className={styles.list}>
-      <li className={styles.item}>
+  <nav>
+    <ul className={s.list}>
+      <li className={s.item}>
         <NavLink
           exact
           to={routes.home}
-          className={styles.link}
-          activeClassName={styles['link--active']}
+          className={s.link}
+          activeClassName={s["link--active"]}
         >
           Home
         </NavLink>
@@ -20,14 +20,13 @@ const Navigation = () => (
       <li>
         <NavLink
           to={routes.movies}
-          className={styles.link}
-          activeClassName={styles['link--active']}
+          className={s.link}
+          activeClassName={s["link--active"]}
         >
           Movies
         </NavLink>
       </li>
     </ul>
-    <b className={styles.title}>Trending movies</b>
   </nav>
 );
 

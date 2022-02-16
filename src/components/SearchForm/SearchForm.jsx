@@ -1,8 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import { FaSearch } from "react-icons/fa";
 
-import styles from "./SearchForm.module.scss";
+import s from "./SearchForm.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 const SearchForm = ({ onSearch }) => {
@@ -29,12 +30,13 @@ const SearchForm = ({ onSearch }) => {
   };
 
   return (
-    <div className={styles.wrapp}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <button type="submit" className={styles.button}></button>
-
+    <div className={s.wrapp}>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <button type="submit" className={s.button}>
+          <FaSearch className={s.reactIcon} />
+        </button>
         <input
-          className={styles.input}
+          className={s.input}
           type="text"
           value={query}
           autoFocus
